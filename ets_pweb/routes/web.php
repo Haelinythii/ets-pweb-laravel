@@ -19,9 +19,12 @@ Route::get('/', function () {
 Route::post('store_task', [App\Http\Controllers\TaskController::class, 'storeTask'])->name('store');
 Route::get('{id}/edit', [App\Http\Controllers\TaskController::class, 'editTask'])->name('edit');
 Route::put('update', [App\Http\Controllers\TaskController::class, 'updateTask'])->name('update');
-Route::get('{id}/delete', [App\Http\Controllers\TaskController::class, 'deleteTask'])->name('delete');
+Route::get('{id}/delete_task', [App\Http\Controllers\TaskController::class, 'deleteTask'])->name('deleteTask');
+Route::get('{id}/archieve_task', [App\Http\Controllers\TaskController::class, 'archieveTask'])->name('archieveTask');
+Route::get('{id}/delete_archieved', [App\Http\Controllers\ArchievedTaskController::class, 'deleteTask'])->name('deleteArchieved');
+Route::get('{id}/unarchieved_task', [App\Http\Controllers\ArchievedTaskController::class, 'unarchieveTask'])->name('unarchievedTask');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\TaskController::class, 'index'])->name('home');
-
+Route::get('/view_archieved', [App\Http\Controllers\ArchievedTaskController::class, 'index'])->name('viewArchieved');

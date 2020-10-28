@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Tasks;
+use App\Models\ArchievedTasks;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -50,6 +51,20 @@ class TaskController extends Controller
     public function deleteTask($id)
     {
         $task = Tasks::find($id);
+        $task->delete();
+        return redirect()->route('home');
+    }
+
+    public function archieveTask($id)
+    {
+        $task = Tasks::find($id);
+        ArchievedTasks::create(
+            [
+                'TaskName' => $task->TaskName,
+                'idUser' => $task->idUser,
+                'deadline' => $task->taskDate
+            ]
+        );
         $task->delete();
         return redirect()->route('home');
     }

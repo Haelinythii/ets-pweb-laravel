@@ -11,6 +11,7 @@
         <button class="btn btn-primary">Add Task</button>
     </form>
 
+    <a class="btn btn-success" href="{{ route('viewArchieved') }}">View Archieved</a>
     <table class="table" style="margin-top: 50px;">
         <thead>
             <th>No.</th>
@@ -32,7 +33,8 @@
                 </td>
                 <td>
                     <a class="btn btn-primary btn-sm" href="{{ route('edit', $task->id) }}">Edit</a>
-                    <a class="btn btn-danger btn-sm" href="{{ route('delete', $task->id) }}">Delete</a>
+                    <a class="btn btn-success btn-sm" href="{{ route('archieveTask', $task->id) }}">Archieve</a>
+                    <a class="btn btn-danger btn-sm" href="{{ route('deleteTask', $task->id) }}">Delete</a>
                 </td>
             </tr>
             @endforeach
