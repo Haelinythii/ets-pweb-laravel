@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <form action="{{ route('storeTask') }}" method="POST">
+    <form action="{{ route('store') }}" method="POST">
         @csrf
         <div class="form-group">
             <h3>New Task</h3>
@@ -16,7 +16,7 @@
             <th>No.</th>
             <th>Task</th>
             <th>Deadline</th>
-            <th>Aksi</th>
+            <th>Action</th>
         </thead>
         <tbody>
             @foreach($taskList as $key => $task)
@@ -27,8 +27,8 @@
                     <a href="#">Add Time</a>
                 </td>
                 <td>
-                    <a href="#">Edit</a>
-                    <a href="#">Delete</a>
+                    <a class="btn btn-primary btn-sm" href="{{ route('edit', $task->id) }}">Edit</a>
+                    <a class="btn btn-danger btn-sm" href="{{ route('delete', $task->id) }}">Delete</a>
                 </td>
             </tr>
             @endforeach

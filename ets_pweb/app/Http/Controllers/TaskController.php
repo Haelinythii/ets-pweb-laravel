@@ -20,7 +20,8 @@ class TaskController extends Controller
         // return $taskList;
         return view('home', compact('taskList'));
     }
-    public function storeATask(Request $req)
+
+    public function storeTask(Request $req)
     {
         Tasks::create(
             [
@@ -29,5 +30,26 @@ class TaskController extends Controller
             ]
         );
         return redirect()->back();
+    }
+
+    public function editTask($id)
+    {
+        $task = Tasks::find($id);
+        return view('edit', compact('task'));
+    }
+
+    public function updateTask(Request $req)
+    {
+        Tasks::where('id', $req->id)->update([
+            'TaskName' => $req->task
+        ]);
+        return redirect()->route('home');
+    }
+
+    public function deleteTask($id)
+    {
+        $task = Tasks::find($id);
+        $task->delete();
+        return redirect()->route('home');
     }
 }

@@ -16,7 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::post('store_task', [App\Http\Controllers\TaskController::class, 'storeATask'])->name('storeTask');
+Route::post('store_task', [App\Http\Controllers\TaskController::class, 'storeTask'])->name('store');
+Route::get('{id}/edit', [App\Http\Controllers\TaskController::class, 'editTask'])->name('edit');
+Route::put('update', [App\Http\Controllers\TaskController::class, 'updateTask'])->name('update');
+Route::get('{id}/delete', [App\Http\Controllers\TaskController::class, 'deleteTask'])->name('delete');
 
 Auth::routes();
 
