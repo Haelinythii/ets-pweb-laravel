@@ -2,22 +2,37 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
+    <form action="{{ route('storeTask') }}" method="POST">
+        @csrf
+        <div class="form-group">
+            <h3>New Task</h3>
+            <input type="text" name="task" class="form-control">
         </div>
-    </div>
+        <button class="btn btn-primary">Add Task</button>
+    </form>
+
+    <table class="table" style="margin-top: 50px;">
+        <thead>
+            <th>No.</th>
+            <th>Task</th>
+            <th>Deadline</th>
+            <th>Aksi</th>
+        </thead>
+        <tbody>
+            @foreach($taskList as $key => $task)
+            <tr>
+                <td>{{ $key + 1 }}</td>
+                <td>{{ $task->TaskName }}</td>
+                <td>
+                    <a href="#">Add Time</a>
+                </td>
+                <td>
+                    <a href="#">Edit</a>
+                    <a href="#">Delete</a>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
 </div>
 @endsection
