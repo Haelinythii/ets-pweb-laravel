@@ -41,7 +41,8 @@ class TaskController extends Controller
     public function updateTask(Request $req)
     {
         Tasks::where('id', $req->id)->update([
-            'TaskName' => $req->task
+            'TaskName' => $req->task,
+            'deadline' => $req->taskDate
         ]);
         return redirect()->route('home');
     }

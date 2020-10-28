@@ -15,7 +15,7 @@
         <thead>
             <th>No.</th>
             <th>Task</th>
-            <th>Deadline</th>
+            <th>Due Date</th>
             <th>Action</th>
         </thead>
         <tbody>
@@ -24,7 +24,11 @@
                 <td>{{ $key + 1 }}</td>
                 <td>{{ $task->TaskName }}</td>
                 <td>
-                    <a href="#">Add Time</a>
+                    @if(is_null($task->deadline))
+                    <a href="{{ route('edit', $task->id) }}">Add Time</a>
+                    @else
+                    <div>{{ $task->deadline }}</div>
+                    @endif
                 </td>
                 <td>
                     <a class="btn btn-primary btn-sm" href="{{ route('edit', $task->id) }}">Edit</a>
