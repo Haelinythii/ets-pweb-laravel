@@ -69,7 +69,7 @@ class TaskController extends Controller
             [
                 'TaskName' => $task->TaskName,
                 'idUser' => $task->idUser,
-                'deadline' => $task->taskDate
+                'deadline' => $task->deadline
             ]
         );
         $task->delete();

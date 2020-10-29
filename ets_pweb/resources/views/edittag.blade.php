@@ -3,14 +3,16 @@
 @section('content')
 <div class="container">
     <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#ModalCenter">New tag</button>
+    <h3>Edit Tag</h3>
+    @foreach($tag_task as $key => $tt)
+        <div>{{$key+1}}. {{ $tt->TagName }}</div>
+    @endforeach
     <form action="{{ route('changeTag') }}" method="POST">
         @csrf
         @method('PUT')
         <input type="hidden" name="id" value="{{$task->id}}">
         <div class="form-group">
-            <h3>Edit Tag</h3>
-
-            <h5>Tag(s) list:</h5>
+            <h5 class="mt-3">Available Tag(s) list:</h5>
             <select name="tag">
                 @foreach($tags as $key => $tag)
                     <option value="{{ $tag->id }}">{{ $tag->TagName }}</option>

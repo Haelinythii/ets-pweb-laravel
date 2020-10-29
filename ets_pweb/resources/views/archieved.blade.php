@@ -16,7 +16,9 @@
                 <td>{{ $key + 1 }}</td>
                 <td>{{ $task->TaskName }}</td>
                 <td>
-                    <a href="#">Add Time</a>
+                    @if(!is_null($task->deadline))
+                    <div>{{ $task->deadline }}</div>
+                    @endif
                 </td>
                 <td>
                     <a class="btn btn-success btn-sm" href="{{ route('unarchievedTask', $task->id) }}">Undo Archieve</a>

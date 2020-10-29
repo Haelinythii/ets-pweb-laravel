@@ -21,7 +21,12 @@ class TagController extends Controller
                     ->select('tags.*')
                     ->where('tags.idUser', $user->id)
                     ->get();
-        return view('edittag', compact('task', 'tags'));
+        $tag_task =  DB::table('tag_tasks')
+                        ->join('tags', 'tag_tasks.tag_id', '=', 'tags.id')
+                        ->select('tag_tasks.*', 'tags.TagName')
+                        ->where('tag_tasks.task_id', $id)
+                        ->get();
+        return view('edittag', compact('task', 'tags', 'tag_task'));
     }
 
     public function storeTag(Request $req)
