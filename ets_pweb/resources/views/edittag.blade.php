@@ -2,29 +2,37 @@
 
 @section('content')
 <div class="container">
-    <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#ModalCenter">New tag</button>
-    <h3>Edit Tag</h3>
-    @foreach($tag_task as $key => $tt)
-        <div>{{$key+1}}. {{ $tt->TagName }}</div>
-    @endforeach
+    <h3 id="tasktitle">Edit Tag</h3>
+    <div class="row">
+    
+    <div class="col-sm-7">
     <form action="{{ route('changeTag') }}" method="POST">
         @csrf
         @method('PUT')
         <input type="hidden" name="id" value="{{$task->id}}">
         <div class="form-group">
-            <h5 class="mt-3">Available Tag(s) list:</h5>
-            <select name="tag">
+            <h5 class="mt-3">Choose The Tag!</h5>
+            <select name="tag" id="taglist" >
                 @foreach($tags as $key => $tag)
                     <option value="{{ $tag->id }}">{{ $tag->TagName }}</option>
                 @endforeach
 
             </select>
-            <button class="btn btn-primary">Add Tag</button>
+            <button id="btnsubmit" class="btn btn-primary">Add Tag</button>
+            <button id="btnview" type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalCenter">New tag</button>
         </div>
     </form>
+    </div>
 
+    <div id="avtaglist" class="col-sm-5">
+    <h5 style="background-color:#fff568; padding-left:10px; padding-top:5px">Task's Tag</h5>
+    @foreach($tag_task as $key => $tt)
+        <div style="padding-left:10px">{{$key+1}}. {{ $tt->TagName }}</div>
+    @endforeach
+    </div>
+    </div>
 
-    <a class="btn btn-secondary" href="{{ route('home') }}">Back</a>
+    <a id="btnsubmit" class="btn btn-secondary" href="{{ route('home') }}" style="margin-top: 20px;">Back</a>
 
     <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -42,7 +50,7 @@
                             <h6>New Tag:</h6>
                             <input type="text" class="form-control" name="tag">
                         </div>
-                        <button class="btn btn-primary mt-3">Add New Tag</button>
+                        <button id="btnsubmit" class="btn btn-primary mt-3">Add New Tag</button>
                     </form>
                 </div>
             </div>

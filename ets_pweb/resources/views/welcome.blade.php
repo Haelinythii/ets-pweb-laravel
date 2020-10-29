@@ -61,14 +61,23 @@
 }
 
 #logotext{
-    left: 75%;
+    left: 70%;
     margin-right: 5%;
     margin-top: 1%;
     position: absolute;
     font-weight: bold;
 } 
 
-        </style>
+    #linknav{
+        color: white;
+        font-size: 15px;
+    }
+
+    #linknav:hover{
+        color: #fff568;
+    }
+
+    </style>
 
         
     </head>
@@ -77,12 +86,12 @@
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
-                        <a href="{{ url('/home') }}" class="text-sm  underline">Dashboard</a>
+                        <a id="linknav" href="{{ url('/home') }}" class="text-sm  ">Dashboard</a>
                     @else
-                        <a href="{{ route('login') }}" class="text-sm  underline">Login</a>
+                        <a id="linknav" href="{{ route('login') }}" class="text-sm  ">Login</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm underline">Register</a>
+                            <a id="linknav"href="{{ route('register') }}" class="ml-4 text-sm ">Register</a>
                         @endif
                     @endif
                 </div>

@@ -44,13 +44,15 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button id="btnsubmit" type="submit" class="btn btn-primary">Update</button>
                             
                             </div>
                         </div>
                     </form>
+                    
                 </div>
-            </div>
+                
+            </div><a id="btnsubmit" class="btn btn-secondary" href="{{ route('home') }}" style="margin-top: 20px;">Back</a>
         </div>
     </div>
 </div>

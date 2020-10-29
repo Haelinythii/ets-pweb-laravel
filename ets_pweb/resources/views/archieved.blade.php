@@ -2,15 +2,15 @@
 
 @section('content')
 <div class="container">
-    <h3>Archieved Task</h3>
-    <table class="table" style="margin-top: 50px;">
+    <h3 id="tasktitle">Archieved Task</h3>
+    <table id="headtable" class="table" style="margin-top: 10px;">
         <thead>
             <th>No.</th>
             <th>Task</th>
             <th>Deadline</th>
-            <th>Action</th>
+            <th></th>
         </thead>
-        <tbody>
+        <tbody id="bodytable">
             @foreach($taskList as $key => $task)
             <tr>
                 <td>{{ $key + 1 }}</td>
@@ -21,13 +21,20 @@
                     @endif
                 </td>
                 <td>
-                    <a class="btn btn-success btn-sm" href="{{ route('unarchievedTask', $task->id) }}">Undo Archieve</a>
-                    <a class="btn btn-danger btn-sm" href="{{ route('deleteArchieved', $task->id) }}">Delete</a>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="btnsubmit" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Action
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <a id="btndrop" class="dropdown-item" href="{{ route('unarchievedTask', $task->id) }}">Undo Archieve</a>
+                    <a id="btndrop" class="dropdown-item" href="{{ route('deleteArchieved', $task->id) }}">Delete</a>
+                    </div>
+                </div>
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
-    <a class="btn btn-secondary mt-3" href="{{ route('home') }}">Back</a>
+    <a id="btnsubmit" class="btn btn-secondary" href="{{ route('home') }}">Back</a>
 </div>
 @endsection
