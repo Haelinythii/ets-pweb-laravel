@@ -17,6 +17,7 @@
             <th>No.</th>
             <th>Task</th>
             <th>Due Date</th>
+            <th>Tag(s)</th>
             <th>Action</th>
         </thead>
         <tbody>
@@ -32,6 +33,15 @@
                     @endif
                 </td>
                 <td>
+                @foreach($tags as $key => $tag)
+                    @if($task->id == $tag->task_id)
+                        <a>{{$tag->TagName}}</a>
+                        <a>|</a>
+                    @endif
+                @endforeach
+                </td>
+                <td><a href="{{ route('editTag', $task->id) }}">Add Tags</a></td>
+                <td>
                     <a class="btn btn-primary btn-sm" href="{{ route('edit', $task->id) }}">Edit</a>
                     <a class="btn btn-success btn-sm" href="{{ route('archieveTask', $task->id) }}">Archieve</a>
                     <a class="btn btn-danger btn-sm" href="{{ route('deleteTask', $task->id) }}">Delete</a>
@@ -40,5 +50,10 @@
             @endforeach
         </tbody>
     </table>
+
+
+
+
+    
 </div>
 @endsection

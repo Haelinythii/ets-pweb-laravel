@@ -11,6 +11,21 @@
             <input type="text" name="task" class="form-control" value="{{$task->TaskName}}">
             <input type="date" name="taskDate" class="form-control" value="{{$task->deadline}}">
         </div>
+        <div>
+            <tags-div></tags-div>
+        </div>
+
+        <div class="dropdown show">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Tags
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                @foreach($tags as $key => $tag)
+                <a class="dropdown-item" href="{{ route('edit', $task->id) }}">{{ $tag->TagName }}</a>
+                @endforeach
+            </div>
+        </div>
         <button class="btn btn-primary">Confirm Edit</button>
     </form>
 

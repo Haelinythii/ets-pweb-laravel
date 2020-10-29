@@ -3,7 +3,6 @@
 @section('content')
 <div class="container">
     <h3>Archieved Task</h3>
-    <a class="btn btn-secondary" href="{{ route('home') }}">Back</a>
     <table class="table" style="margin-top: 50px;">
         <thead>
             <th>No.</th>
@@ -27,5 +26,6 @@
             @endforeach
         </tbody>
     </table>
+    <a class="btn btn-secondary mt-3" href="{{ route('home') }}">Back</a>
 </div>
 @endsection

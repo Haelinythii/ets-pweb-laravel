@@ -23,6 +23,9 @@ Route::get('{id}/delete_task', [App\Http\Controllers\TaskController::class, 'del
 Route::get('{id}/archieve_task', [App\Http\Controllers\TaskController::class, 'archieveTask'])->name('archieveTask');
 Route::get('{id}/delete_archieved', [App\Http\Controllers\ArchievedTaskController::class, 'deleteTask'])->name('deleteArchieved');
 Route::get('{id}/unarchieved_task', [App\Http\Controllers\ArchievedTaskController::class, 'unarchieveTask'])->name('unarchievedTask');
+Route::get('{id}/edit_tag', [App\Http\Controllers\TagController::class, 'index'])->name('editTag');
+Route::post('store_tag', [App\Http\Controllers\TagController::class, 'storeTag'])->name('storeTag');
+Route::put('change_tag', [App\Http\Controllers\TagController::class, 'storeTaskTagRelationship'])->name('changeTag');
 
 Auth::routes();
 

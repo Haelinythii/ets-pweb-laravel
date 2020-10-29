@@ -10,4 +10,8 @@ class Tasks extends Model
     use HasFactory;
     protected $fillable = ['TaskName', 'idUser', 'deadline'];
     
+    public function Tags()
+    {
+        return $this->belongsToMany('App\Models\Tags');
+    }
 }

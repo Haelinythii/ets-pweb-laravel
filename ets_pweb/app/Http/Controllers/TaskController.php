@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Tasks;
+use App\Models\Tags;
+use App\Models\Tag_task;
 use App\Models\ArchievedTasks;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -17,9 +19,13 @@ class TaskController extends Controller
                     ->select('tasks.*')
                     ->where('tasks.idUser', $user->id)
                     ->get();
+        $tags = DB::table('tag_tasks')
+                    ->join('tags', 'tag_tasks.tag_id', '=', 'tags.id')
+                    ->select('tag_tasks.*', 'tags.TagName')
+                    ->get();;
         // $taskList = $taskList->get();
         // return $taskList;
-        return view('home', compact('taskList'));
+        return view('home', compact('taskList', 'tags'));
     }
 
     public function storeTask(Request $req)
@@ -36,7 +42,8 @@ class TaskController extends Controller
     public function editTask($id)
     {
         $task = Tasks::find($id);
-        return view('edit', compact('task'));
+        $tags = Tags::all();
+        return view('edit', compact('task', 'tags'));
     }
 
     public function updateTask(Request $req)
