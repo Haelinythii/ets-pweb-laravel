@@ -31,3 +31,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\TaskController::class, 'index'])->name('home');
 Route::get('/view_archieved', [App\Http\Controllers\ArchievedTaskController::class, 'index'])->name('viewArchieved');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('profile', [App\Http\Controllers\ProfileController::class, 'edit_Profile'])->name('edit_Profile');
+    Route::patch('profile',  [App\Http\Controllers\ProfileController::class, 'update'])->name('update_Profile');
+});
